@@ -1,0 +1,7 @@
+C:\Users\ngefen\source\repos\part1\part1\bin\Debug\part1.exe.config
+C:\Users\ngefen\source\repos\part1\part1\bin\Debug\part1.exe
+C:\Users\ngefen\source\repos\part1\part1\bin\Debug\part1.pdb
+C:\Users\ngefen\source\repos\part1\part1\obj\Debug\part1.csprojAssemblyReference.cache
+C:\Users\ngefen\source\repos\part1\part1\obj\Debug\part1.csproj.CoreCompileInputs.cache
+C:\Users\ngefen\source\repos\part1\part1\obj\Debug\part1.exe
+C:\Users\ngefen\source\repos\part1\part1\obj\Debug\part1.pdb
