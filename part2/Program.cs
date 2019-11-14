@@ -128,7 +128,7 @@ To exit enter 4");
         {
             bool[,] calender = new bool[12, 31];
             calender.Initialize();
-            bool exit = true; ;
+            bool exit = true;
 
             while (exit)
             {
