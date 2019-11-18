@@ -1,13 +1,19 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
+ hillel gonen-325004414
+ ilan russell-332339134
+*/
 namespace part2
 {
     class Program
     {
+        //prints the starting date and the final date
+        //of each sequence of booked days
         static void printBookedDays(bool[,] calender)
         {
             bool flag = false;
@@ -35,7 +41,11 @@ namespace part2
                     }
                 }
             }
+            if (calender[11, 30])
+                Console.Write("finish date:{0}/{1}", 31, 12);
         }
+        //prints the amount of days that are booked
+        //prints the percentage of days that are booked
         static void printBookedDaysData(bool[,] calender)
         {
             int count = 0;
@@ -51,6 +61,7 @@ namespace part2
             Console.WriteLine("Number of booked days:{0}", count);
             Console.WriteLine("Percentage of booked days: {0}%", percentage);
         }
+        //books the holiday if the event is free (if the next function is true)
         static void putInEvent(bool[,] calender, int[] date, int length)
         {
             int day = date[1] - 1;
@@ -70,6 +81,8 @@ namespace part2
                 day++;
             }
         }
+        //checks if the date is free
+        //you are aloud to have two people stay on the first and last day of any vacation
         static bool dateIsFree(bool[,] calender, int[] date, int length)
         {
             int day = date[1] - 1;
@@ -84,13 +97,16 @@ namespace part2
                     else
                         month++;
                 }
-                if (calender[month, day] && calender[month, day+1])
+                if (calender[month, day] && calender[month, day + 1])
                     return false;
                 length--;
                 day++;
             }
             return true;
         }
+        //recieves an event from the user
+        //checks if it is free (through dateIsFree)
+        //if it is free it books the event (through putInEvent)
         static void newEvent(bool[,] calender)
         {
             int[] eventStartingDate = new int[2];
@@ -104,7 +120,12 @@ namespace part2
             Console.Write("length:");
             eventLength = int.Parse(Console.ReadLine());
             Console.WriteLine();
-            if (dateIsFree(calender, eventStartingDate, eventLength))
+
+            if (eventStartingDate[1] > 31 || (eventStartingDate[1] - 1 + (eventStartingDate[0] - 1) * 31 + eventLength - 1 >= 12 * 31))
+            {
+                Console.Write("ERROR");
+            }
+            else if (dateIsFree(calender, eventStartingDate, eventLength))
             {
                 Console.Write("the request has been done (: ");
                 putInEvent(calender, eventStartingDate, eventLength);
@@ -115,6 +136,7 @@ namespace part2
 
 
         }
+        //prints the menu of the users options
         static void menuPrint()
         {
             Console.WriteLine(
@@ -122,17 +144,19 @@ namespace part2
 For an event enter: 1
 To show free dates to stay enter: 2
 To show number of booked days and percentage of days that are booked enter: 3
-To exit enter 4");
+To exit enter 4
+To repeat the menu enter 5
+");
         }
         static void Main(string[] args)
         {
             bool[,] calender = new bool[12, 31];
             calender.Initialize();
             bool exit = true;
-
+            menuPrint();
             while (exit)
             {
-                menuPrint();
+
                 //Console.Write("enter your choice");
                 int userChoice;
                 userChoice = int.Parse(Console.ReadLine());
@@ -150,10 +174,16 @@ To exit enter 4");
                     case 4:
                         exit = false;
                         break;
+                    case 5:
+                        menuPrint();
+                        break;
+                    default:
+                        Console.Write("ERROR");
+                        break;
+
                 }
 
             }
-            Console.Read();
         }
     }
 }
